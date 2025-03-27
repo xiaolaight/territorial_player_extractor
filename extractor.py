@@ -4,27 +4,6 @@ from selenium.webdriver.support import expected_conditions as EC
 
 url = "https://territorial.io"
 
-style_args = {
-
-    "color": "rgb(170, 170, 170)",
-    "cursor": "pointer",
-    "margin-top": "0.2em",
-    "margin-right": "0.2em",
-    "margin-bottom": "0.2em",
-    "max-width": "9em",
-    "width": "9em",
-    "max-height": "1.4em",
-    "height": "1.4em",
-    "white-space-collapse": "collapse",
-    "text-wrap-mode": "nowrap",
-    "overflow-x": "hidden",
-    "overflow-y": "hidden",
-    "text-overflow": "ellipsis",
-    "font": "inherit",
-    "display": "inline-block"
-
-}
-
 options = webdriver.ChromeOptions()
 options.add_experimental_option("detach", True)
 driver=webdriver.Chrome(options=options)
