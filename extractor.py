@@ -26,15 +26,9 @@ g = Github(auth=auth)
 repo = g.get_repo("xiaolaight/territorial_player_extractor")
 userList = repo.get_contents("names.txt")
 names = str(userList.decoded_content)
-targetUsers = [ ]
-c = ""
-for i in range(len(names)):
-    if (names[i] == "`"):
-        targetUsers.append(c)
-        c = ""
-    else:
-        c+=names[i]
+targetUsers = names.split('`')
 del targetUsers[0]
+print(targetUsers)
 
 def pageRead(desiredPath):
     multiplayer_button = WebDriverWait(driver, 20).until(EC.element_to_be_clickable(("xpath", desiredPath)))
@@ -54,8 +48,9 @@ def pageRead(desiredPath):
             for j in targetUsers:
                 if j in cs:
                     outputFile = repo.get_contents("detect.txt")
-                    originalText = str(outputFile.decoded_content)
-                    newText = "User " + cs + " detected at " + str(time.ctime()) + " with keyword " + j + '\n'
+                    originalText = str(outputFile.decoded_content.decode("utf-8"))
+                    print(originalText)
+                    newText = "User " + cs + " detected at " + str(time.ctime()) + " with keyword " + j + "  \n"
                     repo.update_file(outputFile.path, "NEW COMMIT", f"{originalText} {newText}", outputFile.sha)
             cur = []
         elif (allPlayers[i] == '🟢' or allPlayers[i] == '⚪'):
