@@ -1,3 +1,0 @@
-gunicorn==23.0.0
-selenium==4.30.0
-PyGitHub==2.6.1
