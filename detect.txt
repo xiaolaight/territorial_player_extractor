@@ -13,3 +13,4 @@
  User  denmark empire  detected at Thu Mar 27 22:09:01 2025 with keyword p  
  User  [UNH]Neptuno :D [MX] detected at Thu Mar 27 22:09:03 2025 with keyword p  
  User  [eu] jedi pro detected at Thu Mar 27 22:09:14 2025 with keyword p  
+ User  [CN] Sniper detected at Thu Mar 27 22:09:15 2025 with keyword p  
