@@ -5,6 +5,10 @@ from github import Github
 from github import Auth
 import time
 
+# a basic web scraper to get player information and log their username and time logged in
+# add the desired tracked names into the names.txt within the repo
+# information will be recorded down in the detect.txt within the repo
+
 url = "https://territorial.io"
 
 options = webdriver.ChromeOptions()
@@ -21,7 +25,9 @@ zombiePath = "//html/body/div[1]/div[2]/div/button[4]"
 
 allPath = [teamPath, battlePath, vsPath, zombiePath]
 
-auth = Auth.Token("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")
+tok = "YOUR AUTH TOKEN" #generate this by cloning the repository and using your auth token
+
+auth = Auth.Token(tok)
 g = Github(auth=auth)
 repo = g.get_repo("xiaolaight/territorial_player_extractor")
 userList = repo.get_contents("names.txt")
@@ -33,11 +39,16 @@ targetUsers.pop()
 def pageRead(desiredPath):
     multiplayer_button = WebDriverWait(driver, 20).until(EC.element_to_be_clickable(("xpath", desiredPath)))
     multiplayer_button.click()
-    driver.implicitly_wait(20)
 
-    spans = driver.find_elements("xpath", "//html/body/div[1]/div[5]/div/div")
-    for elem in spans:
-        allPlayers = elem.text
+    spans = driver.find_element("xpath", "//html/body/div[1]/div[5]/div/div")
+
+    allPlayers = ""
+
+    try:
+        allPlayers = spans.text
+        print(allPlayers)
+    except:
+        pass
 
     cur = [ ]
 
@@ -60,6 +71,6 @@ def runAll():
     while True:
         for i in range(0, 4):
             pageRead(allPath[i])
-        time.sleep(10)
+        time.sleep(5)
 
 runAll()
